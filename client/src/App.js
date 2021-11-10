@@ -4,7 +4,7 @@ import InputForm from './components/InputForm'
 
 const App = () => {
   return (
-    <div className="container" >
+    <div className="container">
       <Header />
       <InputForm />
     </div>
