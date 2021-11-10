@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/JDixon1995/PokeAPI-w-React#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
   }
 }
