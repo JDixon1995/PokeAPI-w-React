@@ -12,12 +12,12 @@ const App = () => {
   const [ loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=10')
 
 
-  const sortArray = () => {
+  const sortArray = async () => {
     allPokemon.sort((a, b) => a.id - b.id)
   }
 
   const getAllPokemon = async () => {
-    const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10')
+    const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=20')
     const data = await res.data
     const results = res.data.results
 
