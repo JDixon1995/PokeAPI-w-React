@@ -9,12 +9,16 @@ const App = () => {
 
   const [ showSearchForm, setShowSearchForm ] = useState(false)
   const [ allPokemon, setAllPokemon ] = useState([])
-  const [ loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+  const [ loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=10')
 
+
+  const sortArray = () => {
+    allPokemon.sort((a, b) => a.id - b.id)
+  }
 
   const getAllPokemon = async () => {
-    const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=20')
-    const data = res.data
+    const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10')
+    const data = await res.data
     const results = res.data.results
 
     setLoadMore(data.next)
@@ -22,19 +26,23 @@ const App = () => {
     function createPokemonObject(results) {
       results.forEach(async (pokemon) => {
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-        const data = res.data
+        const data = await res.data
 
-        setAllPokemon( currentList => [...currentList, data])
-        await allPokemon.sort((a, b) => a.index - b.index)
+        setAllPokemon(currentList => [...currentList, data])
       })
     }
     createPokemonObject(data.results)
   }
 
+
+
   useEffect(() => {
     getAllPokemon()
   }, [])
 
+  useEffect(() => {
+    sortArray()
+  })
   return (
     <div className="container">
       <Header />
