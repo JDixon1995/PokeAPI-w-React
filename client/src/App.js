@@ -17,7 +17,7 @@ const App = () => {
   }
 
   const getAllPokemon = async () => {
-    const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=20')
+    const res = await axios.get(loadMore)
     const data = await res.data
     const results = res.data.results
 
@@ -66,7 +66,7 @@ const App = () => {
 
 
         </div>
-        <Button text='Load More...' onClick={setLoadMore} />
+        <Button text='Load More...' onClick={() => getAllPokemon()} />
       </div>
     </div>
   );
