@@ -9,7 +9,7 @@ const App = () => {
 
   const [ showSearchForm, setShowSearchForm ] = useState(false)
   const [ allPokemon, setAllPokemon ] = useState([])
-  const [ loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=10')
+  const [ loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
 
 
   const sortArray = async () => {
@@ -43,6 +43,7 @@ const App = () => {
   useEffect(() => {
     sortArray()
   })
+
   return (
     <div className="container">
       <Header />
@@ -65,7 +66,7 @@ const App = () => {
 
 
         </div>
-        <Button text='Load More...' />
+        <Button text='Load More...' onClick={setLoadMore} />
       </div>
     </div>
   );
