@@ -7,7 +7,6 @@ import PokemonThumb from './components/PokemonThumb'
 
 const App = () => {
 
-  const [ showSearchForm, setShowSearchForm ] = useState(false)
   const [ allPokemon, setAllPokemon ] = useState([])
   const [ loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
 
@@ -33,18 +32,7 @@ const App = () => {
     }
     createPokemonObject(data.results)
   }
-
-  const searchPokemon = async () => {
-    let searchName = 'pikachu'
-    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${searchName}`)
-    const data = await res.data
-    console.log(data)
-  }
-  useEffect(() => {
-    searchPokemon()
-  }, [])
   
-
   useEffect(() => {
     getAllPokemon()
   }, [])
@@ -56,11 +44,8 @@ const App = () => {
   return (
     <div className="container">
       <Header />
-      <Button 
-      onClick={() => setShowSearchForm(!showSearchForm)} 
-      text='Search PokeDex'
-      />
-      {!showSearchForm ? '' : <InputForm />}
+      <InputForm />
+      <h2>PokeDEX</h2>
       <div className="pokemon-container">
         <div className="all-container">
           {allPokemon.map( (pokemonStats, index) => 
