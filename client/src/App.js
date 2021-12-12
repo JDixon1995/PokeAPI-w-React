@@ -34,7 +34,16 @@ const App = () => {
     createPokemonObject(data.results)
   }
 
-
+  const searchPokemon = async () => {
+    let searchName = 'pikachu'
+    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${searchName}`)
+    const data = await res.data
+    console.log(data)
+  }
+  useEffect(() => {
+    searchPokemon()
+  }, [])
+  
 
   useEffect(() => {
     getAllPokemon()
