@@ -1,26 +1,34 @@
 import React from 'react'
 import axios from 'axios'
+import { useState } from 'react'
 
 const InputForm = () => {
 
-    const searchPokemon = async () => {
-        let search = 'pikachu'
-        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${search}`)
-        const data = await res.data
-        console.log(data)
+    const [ searchName, setSearchName ] = useState('')
+
+    const searchPokemon = async (e) => {
+        e.preventDefault()
+
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${searchName}`)
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch( err => {
+            console.log(err)
+        })
       }
 
     return (
     <div>
         <form className="form-control">
             <label>Name:</label>
-            <input type="text" placeholder="Pokemon name here..." />
-            <label>PokeDEX # Entry:</label>
-            <input type="text" placeholder="Pokemon # here..." />
+            <input type="text" placeholder="Pokemon name here..."
+            value={searchName} onChange={(e) => setSearchName(e.target.value)}
+            />
             <button 
             className="btn" 
             type="submit" 
-            onClick={() => searchPokemon()}>Search</button>
+            onSubmit={() => searchPokemon()}>Search</button>
         </form>
         <div id="searchContainer">
         </div>
