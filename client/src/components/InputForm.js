@@ -8,27 +8,21 @@ const InputForm = () => {
 
     const searchPokemon = async (e) => {
         e.preventDefault()
-
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${searchName}`)
-        .then(res => {
-            console.log(res.data)
-        })
-        .catch( err => {
-            console.log(err)
-        })
+        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/pikachu`)
+        const data = await res.data
+        console.log(data)
       }
 
     return (
     <div>
-        <form className="form-control">
+        <form className="form-control" onSubmit={(e) => searchPokemon(e)}>
             <label>Name:</label>
             <input type="text" placeholder="Pokemon name here..."
             value={searchName} onChange={(e) => setSearchName(e.target.value)}
             />
             <button 
             className="btn" 
-            type="submit" 
-            onSubmit={() => searchPokemon()}>Search</button>
+            type="submit">Search</button>
         </form>
         <div id="searchContainer">
         </div>
