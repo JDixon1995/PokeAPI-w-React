@@ -53,7 +53,7 @@ const App = () => {
           key={index}
           id={pokemonStats.id}
           image={pokemonStats.sprites.other.dream_world.front_default}
-          name={pokemonStats.name}
+          name={pokemonStats.name = pokemonStats.name.charAt(0).toUpperCase() + pokemonStats.name.slice(1)}
           type={pokemonStats.types[0].type.name}
           />)
         }
