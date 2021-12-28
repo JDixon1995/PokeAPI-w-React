@@ -13,10 +13,14 @@ const InputForm = () => {
         alert('Please enter the name of a Pokemon...')
       } else {
         e.preventDefault()
+        try {
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${searchName}`)
         const data = await res.data
         setSearchName('')
         setSearchArray(currentList => [data])
+        } catch (err) {
+          alert(`That Pokemon doesn't exist...`)
+        }
       }
     }
     return (
