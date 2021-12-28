@@ -9,13 +9,16 @@ const InputForm = () => {
     const [ searchName, setSearchName ] = useState('')
 
     const searchPokemon = async (e) => {
+      if (searchName === '') {
+        alert('Please enter the name of a Pokemon...')
+      } else {
         e.preventDefault()
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${searchName}`)
         const data = await res.data
         setSearchName('')
         setSearchArray(currentList => [data])
       }
-
+    }
     return (
     <div>
         <form className="form-control" onSubmit={(e) => searchPokemon(e)}>
