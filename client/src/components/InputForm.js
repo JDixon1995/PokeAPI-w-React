@@ -20,6 +20,7 @@ const InputForm = () => {
         setSearchArray(currentList => [data])
         } catch (err) {
           alert(`That Pokemon doesn't exist...`)
+          setSearchName('')
         }
       }
     }
